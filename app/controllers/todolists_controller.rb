@@ -33,10 +33,16 @@ redirect_to todolist_path(list.id)
       redirect_to todolist_path(list.id)
     end
 
+    def destroy
+      list = List.find(params[:id])
+      list.destroy
+      reairect_to todolists_path
+    end
+
   private
 
   def list_params
-    params.require(:list).permit(:title, :body)
+    params.require(:list).permit(:title, :body, :image)
 
   end
 end
