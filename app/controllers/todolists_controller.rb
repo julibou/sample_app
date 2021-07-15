@@ -10,7 +10,8 @@ class TodolistsController < ApplicationController
 
     list.save
 
-    redirect_to '/top'
+redirect_to todolist_path(list.id)
+
   end
 
     def index
@@ -18,6 +19,19 @@ class TodolistsController < ApplicationController
 
     end
 
+    def show
+      @list = List.find(params[:id])
+    end
+
+    def edit
+      @list = List.find(params[:id])
+    end
+
+    def update
+      list = Lsit.find(params[:id])
+      list.update(list_params)
+      redirect_to todolist_path(list.id)
+    end
 
   private
 
